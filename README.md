@@ -1,2 +1,2 @@
-# Nutricionista_cl-nica_funcional
-Nutricionista clínica funcional- emagrecimento e tratamento do lipedema
+# Nutricionista_clinica_funcional
+Nutricionista clinica funcional- emagrecimento e tratamento do lipedema
