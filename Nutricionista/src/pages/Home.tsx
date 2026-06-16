@@ -1,4 +1,4 @@
-import Logo from '../assets/logo.png';
+import Logo from '../assets/Logo.png';
 import "../styles/header.css";
 import "../styles/utility.css";
 import Menu from "../assets/Menu.svg";
