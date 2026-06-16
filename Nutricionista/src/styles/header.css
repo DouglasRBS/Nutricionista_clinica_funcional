@@ -1,3 +1,7 @@
+body > div > header {
+    background-color: #F9EEF0;
+}
+
 .reverse-color {
     color: var(--primary-color);
 }
@@ -39,21 +43,32 @@
     font-size: var(--fs-lg);
 }
 
+nav img:first-child {
+    width: 130px;
+    height: auto;
+}
+
 @media (width >= 1280px) {
-header {
-    position: relative;
-    z-index: 1;
-}
+    body > div > header {
+        position: relative;
+        z-index: 1;
+        background-color: #F9EEF0;
+    }
 
-nav > img {
-    display: initial;
-}
+    nav > img {
+        display: initial;
+    }
 
-.mobile-menu {
-    display: none;
-}
+    nav img:first-child {
+        width: 160px;
+        height: auto;
+    }
 
-.mobile-menu-content {
-    display: none; 
-}
+    .mobile-menu {
+        display: none;
+    }
+
+    .mobile-menu-content {
+        display: none;
+    }
 }

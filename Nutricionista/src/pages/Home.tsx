@@ -1,15 +1,18 @@
-import Logo from '../assets/logo.svg';
+import Logo from '../assets/logo.png';
 import "../styles/header.css";
 import "../styles/utility.css";
 import Menu from "../assets/Menu.svg";
 import Close from "../assets/Close.svg";
 import Button from '../components/button.tsx';
 import { useState, useEffect } from 'react';
-import Champion from "../assets/champion.svg";
 import "../styles/hero.css";
 import "../styles/solution.css";
+import IconEmagrecimento from "../assets/emagrecimento.svg";
+import IconLipedema from "../assets/lipedema.svg";
+import IconNutricao from "../assets/nutricao.svg";
 import TestimonialCard from '../components/TestimonialCard.tsx';
 import { IconBrandInstagram, IconBrandFacebook, IconBrandWhatsapp } from '@tabler/icons-react';
+import CheckIcon from '../assets/check.svg';
 
 export default function Home() {
     const [showMobileMenu, setShowMobileMenu] = useState(false);
@@ -23,77 +26,59 @@ export default function Home() {
 
     return (
         <>
-            <header className="container py-sm">
-                <nav className="flex items-center justify-between">
-                    <img src={Logo} alt="Larissa Litvin - Nutricionista" width={220} height={80} />
+            <header className="py-sm">
+                <div style={{ maxWidth: '1200px', margin: '0 auto', padding: '0 1.5rem' }}>
+                    <nav className="flex items-center justify-between">
+                        <img src={Logo} alt="Larissa Litvin - Nutricionista" width={220} height={80} />
 
-                    <div className="desktop-only">
-                        <ul className="flex gap-1">
-                            <li>
-                                <a onClick={() => setShowMobileMenu(false)} href="#">Home</a>
-                            </li>
-                            <li>
-                                <a onClick={() => setShowMobileMenu(false)} href="#solution">Serviços</a>
-                            </li>
-                            <li>
-                                <a onClick={() => setShowMobileMenu(false)} href="#testimonials">Depoimentos</a>
-                            </li>
-                            <li>
-                                <a onClick={() => setShowMobileMenu(false)} href="#pricing">Planos</a>
-                            </li>
-                            <li>
-                                <a onClick={() => setShowMobileMenu(false)} href="#contact">Contato</a>
-                            </li>
-                        </ul>
-                    </div>
-
-                    <div className="desktop-only">
-                        <div className="flex items-center">
-                            <a className="reverse-color ml-lg" href="https://wa.me/5545999368498" target="_blank" rel="noopener noreferrer">
-                                WhatsApp
-                            </a>
-                            <Button text="Agendar consulta" />
+                        <div className="desktop-only">
+                            <ul className="flex gap-1">
+                                <li><a onClick={() => setShowMobileMenu(false)} href="#">Home</a></li>
+                                <li><a onClick={() => setShowMobileMenu(false)} href="#solution">Serviços</a></li>
+                                <li><a onClick={() => setShowMobileMenu(false)} href="#testimonials">Depoimentos</a></li>
+                                <li><a onClick={() => setShowMobileMenu(false)} href="#pricing">Planos</a></li>
+                                <li><a onClick={() => setShowMobileMenu(false)} href="#contact">Contato</a></li>
+                            </ul>
                         </div>
-                    </div>
 
-                    <div className="mobile-menu">
-                        {showMobileMenu ? (
-                            <div className="mobile-menu-content">
-                                <div className="container flex">
-                                    <ul>
-                                        <li>
-                                            <a onClick={() => setShowMobileMenu(false)} href="#">Home</a>
-                                        </li>
-                                        <li>
-                                            <a onClick={() => setShowMobileMenu(false)} href="#solution">Serviços</a>
-                                        </li>
-                                        <li>
-                                            <a onClick={() => setShowMobileMenu(false)} href="#testimonials">Depoimentos</a>
-                                        </li>
-                                        <li>
-                                            <a onClick={() => setShowMobileMenu(false)} href="#pricing">Planos</a>
-                                        </li>
-                                        <li>
-                                            <a onClick={() => setShowMobileMenu(false)} href="#contact">Contato</a>
-                                        </li>
-                                    </ul>
-                                    <li>
-                                        <a onClick={() => setShowMobileMenu(false)} className="reverse-color" href="https://wa.me/5545999368498" target="_blank" rel="noopener noreferrer">
-                                            WhatsApp
-                                        </a>
-                                    </li>
-                                    <span onClick={() => setShowMobileMenu(!showMobileMenu)} className="btn-wrapper">
-                                        <img src={Close} alt="ícone fechar menu" width={24} height={24} />
-                                    </span>
-                                </div>
+                        <div className="desktop-only">
+                            <div className="flex items-center">
+                                <a className="reverse-color ml-lg" href="https://wa.me/5545999368498" target="_blank" rel="noopener noreferrer">
+                                    WhatsApp
+                                </a>
+                                <Button text="Agendar consulta" />
                             </div>
-                        ) : (
-                            <span onClick={() => setShowMobileMenu(!showMobileMenu)} className="btn-wrapper">
-                                <img src={Menu} alt="ícone menu" width={24} height={24} />
-                            </span>
-                        )}
-                    </div>
-                </nav>
+                        </div>
+
+                        <div className="mobile-menu">
+                            {showMobileMenu ? (
+                                <div className="mobile-menu-content">
+                                    <div className="container flex">
+                                        <ul>
+                                            <li><a onClick={() => setShowMobileMenu(false)} href="#">Home</a></li>
+                                            <li><a onClick={() => setShowMobileMenu(false)} href="#solution">Serviços</a></li>
+                                            <li><a onClick={() => setShowMobileMenu(false)} href="#testimonials">Depoimentos</a></li>
+                                            <li><a onClick={() => setShowMobileMenu(false)} href="#pricing">Planos</a></li>
+                                            <li><a onClick={() => setShowMobileMenu(false)} href="#contact">Contato</a></li>
+                                        </ul>
+                                        <li>
+                                            <a onClick={() => setShowMobileMenu(false)} className="reverse-color" href="https://wa.me/5545999368498" target="_blank" rel="noopener noreferrer">
+                                                WhatsApp
+                                            </a>
+                                        </li>
+                                        <span onClick={() => setShowMobileMenu(!showMobileMenu)} className="btn-wrapper">
+                                            <img src={Close} alt="ícone fechar menu" width={24} height={24} />
+                                        </span>
+                                    </div>
+                                </div>
+                            ) : (
+                                <span onClick={() => setShowMobileMenu(!showMobileMenu)} className="btn-wrapper">
+                                    <img src={Menu} alt="ícone menu" width={24} height={24} />
+                                </span>
+                            )}
+                        </div>
+                    </nav>
+                </div>
             </header>
 
             <section id="hero">
@@ -133,41 +118,26 @@ export default function Home() {
 
                 <div className="even-columns">
                     <div className="card">
-                        <span>
-                            <img src={Champion} alt="ícone serviço" width={64} height={64} />
-                        </span>
+                        <span><img src={IconEmagrecimento} alt="ícone emagrecimento" width={64} height={64} /></span>
                         <div>
                             <h3>Emagrecimento Saudável</h3>
-                            <p>
-                                Protocolos individualizados para perda de peso com saúde,
-                                sem dietas restritivas, respeitando seu metabolismo e rotina.
-                            </p>
+                            <p>Protocolos individualizados para perda de peso com saúde, sem dietas restritivas, respeitando seu metabolismo e rotina.</p>
                             <hr />
                         </div>
                     </div>
                     <div className="card">
-                        <span>
-                            <img src={Champion} alt="ícone serviço" width={64} height={64} />
-                        </span>
+                        <span><img src={IconLipedema} alt="ícone lipedema" width={64} height={64} /></span>
                         <div>
                             <h3>Tratamento do Lipedema</h3>
-                            <p>
-                                Abordagem nutricional especializada para o lipedema,
-                                reduzindo inflamação, dor e melhorando sua qualidade de vida.
-                            </p>
+                            <p>Abordagem nutricional especializada para o lipedema, reduzindo inflamação, dor e melhorando sua qualidade de vida.</p>
                             <hr />
                         </div>
                     </div>
                     <div className="card">
-                        <span>
-                            <img src={Champion} alt="ícone serviço" width={64} height={64} />
-                        </span>
+                        <span><img src={IconNutricao} alt="ícone nutrição" width={64} height={64} /></span>
                         <div>
                             <h3>Nutrição Funcional</h3>
-                            <p>
-                                Alimentação como remédio — tratamos a causa, não só o sintoma,
-                                com foco no equilíbrio intestinal, hormonal e metabólico.
-                            </p>
+                            <p>Alimentação como remédio — tratamos a causa, não só o sintoma, com foco no equilíbrio intestinal, hormonal e metabólico.</p>
                             <hr />
                         </div>
                     </div>
@@ -188,46 +158,80 @@ export default function Home() {
 
                 <section className="carousel">
                     <div className="carousel-content">
-                        <TestimonialCard
-                            name="Ana Paula S."
-                            role="Paciente — Emagrecimento"
-                            text="Em 3 meses de acompanhamento com a Dra. Larissa perdi 8kg sem passar fome. O plano alimentar é super prático e ela sempre me incentiva. Recomendo demais!"
-                            image={""}
-                            stars={5}
-                        />
-                        <TestimonialCard
-                            name="Juliana M."
-                            role="Paciente — Lipedema"
-                            text="Depois de anos sofrendo com dores e inchaço, finalmente encontrei uma profissional que entende o lipedema de verdade. A Dra. Larissa mudou minha vida!"
-                            image={""}
-                            stars={5}
-                        />
-                        <TestimonialCard
-                            name="Fernanda R."
-                            role="Paciente — Nutrição Funcional"
-                            text="Minha energia voltou, minha digestão melhorou e emagreci sem sofrimento. O atendimento é humanizado e o plano alimentar é muito gostoso de seguir!"
-                            image={""}
-                            stars={5}
-                        />
-                        <TestimonialCard
-                            name="Camila T."
-                            role="Paciente — Emagrecimento"
-                            text="A Dra. Larissa é incrível! Muito atenciosa, explica tudo direitinho e os resultados apareceram rápido. Me sinto muito mais disposta e confiante!"
-                            image={""}
-                            stars={5}
-                        />
+                        <TestimonialCard text="Lari, sua querida, eu quem agradece. Ainda continuo tentando fazer a dieta e não consigo comer mais como antes. Obrigada pela atenção, profissionalismo e carinho comigo — tenho certeza que com todas as pacientes você é maravilhosa!" stars={5} />
+                        <TestimonialCard text="Acredito que estou indo bem, pois diminuí bastante as quantidades no almoço e na janta. Como sempre mais leve, presto atenção na mastigação e parei com as guloseimas. Muito obrigada pelo cuidado, dedicação e orientação. Sua ajuda foi fundamental para alcançar meus objetivos e melhorar minha qualidade de vida!" stars={5} />
+                        {/* duplicados para o loop infinito funcionar sem corte */}
+                        <TestimonialCard text="Lari, sua querida, eu quem agradece. Ainda continuo tentando fazer a dieta e não consigo comer mais como antes. Obrigada pela atenção, profissionalismo e carinho comigo — tenho certeza que com todas as pacientes você é maravilhosa!" stars={5} />
+                        <TestimonialCard text="Acredito que estou indo bem, pois diminuí bastante as quantidades no almoço e na janta. Como sempre mais leve, presto atenção na mastigação e parei com as guloseimas. Muito obrigada pelo cuidado, dedicação e orientação. Sua ajuda foi fundamental para alcançar meus objetivos e melhorar minha qualidade de vida!" stars={5} />
                     </div>
                 </section>
             </section>
 
-            {/* <section id="pricing" className="container">
+            <section id="pricing" className="container">
                 <header>
                     <p className="desktop-only">Planos e preços</p>
                     <h2>Nossos planos</h2>
                 </header>
                 <section className="even-columns gap-1.5">
+                    <div className="pricing-card">
+                        <div className="plan">
+                            <h3>Consulta com Retorno</h3>
+                            <div className="hr" />
+                            <div className="price">
+                                <h2>R$250</h2>
+                                <p>,00</p>
+                            </div>
+                            <p>à vista</p>
+                        </div>
+                        <div className="hr" />
+                        <ul>
+                            <li className="features"><img src={CheckIcon} width={20} height={20} /><p>1 consulta nutricional</p></li>
+                            <li className="features"><img src={CheckIcon} width={20} height={20} /><p>1 retorno incluído</p></li>
+                            <li className="features"><img src={CheckIcon} width={20} height={20} /><p>Plano alimentar personalizado</p></li>
+                        </ul>
+                        <Button text="Agendar consulta" />
+                    </div>
+
+                    <div className="pricing-card">
+                        <div className="plan">
+                            <h3>Programa Nutricional</h3>
+                            <div className="hr" />
+                            <div className="price">
+                                <h2>R$540</h2>
+                                <p>,00</p>
+                            </div>
+                            <p>2x sem juros ou 3x+ com juros da maquininha</p>
+                        </div>
+                        <div className="hr" />
+                        <ul>
+                            <li className="features"><img src={CheckIcon} width={20} height={20} /><p>3 consultas nutricionais</p></li>
+                            <li className="features"><img src={CheckIcon} width={20} height={20} /><p>Acompanhamento contínuo</p></li>
+                            <li className="features"><img src={CheckIcon} width={20} height={20} /><p>Plano alimentar personalizado</p></li>
+                            <li className="features"><img src={CheckIcon} width={20} height={20} /><p>Suporte entre as consultas</p></li>
+                        </ul>
+                        <Button text="Agendar consulta" />
+                    </div>
+
+                    <div className="pricing-card">
+                        <div className="plan">
+                            <h3>Avaliação de Bioimpedância</h3>
+                            <div className="hr" />
+                            <div className="price">
+                                <h2>R$50</h2>
+                                <p>,00</p>
+                            </div>
+                            <p>avulso ou junto a qualquer plano</p>
+                        </div>
+                        <div className="hr" />
+                        <ul>
+                            <li className="features"><img src={CheckIcon} width={20} height={20} /><p>Avaliação de composição corporal</p></li>
+                            <li className="features"><img src={CheckIcon} width={20} height={20} /><p>Análise de massa muscular e gordura</p></li>
+                            <li className="features"><img src={CheckIcon} width={20} height={20} /><p>Resultado na hora</p></li>
+                        </ul>
+                        <Button text="Agendar consulta" />
+                    </div>
                 </section>
-            </section> */}
+            </section>
 
             <section id="contact" className="container">
                 <header>
@@ -246,18 +250,12 @@ export default function Home() {
             </section>
 
             <footer className="container">
-                <div className="footer-brand">
-                    <img src={Logo} alt="Larissa Litvin Nutricionista" width={160} height={60} />
+                <div className="footer-brand" style={{ alignItems: 'center' }}>
+                    <img src={Logo} alt="Larissa Litvin Nutricionista" width={220} style={{ height: 'auto' }} />
                     <div className="footer-socials">
-                        <a href="#" target="_blank" rel="noopener noreferrer">
-                            <IconBrandInstagram size={24} />
-                        </a>
-                        <a href="#" target="_blank" rel="noopener noreferrer">
-                            <IconBrandFacebook size={24} />
-                        </a>
-                        <a href="https://wa.me/5545999368498" target="_blank" rel="noopener noreferrer">
-                            <IconBrandWhatsapp size={24} />
-                        </a>
+                        <a href="#" target="_blank" rel="noopener noreferrer"><IconBrandInstagram size={24} /></a>
+                        <a href="#" target="_blank" rel="noopener noreferrer"><IconBrandFacebook size={24} /></a>
+                        <a href="https://wa.me/5545999368498" target="_blank" rel="noopener noreferrer"><IconBrandWhatsapp size={24} /></a>
                     </div>
                 </div>
 

@@ -1,6 +1,6 @@
 #hero {
-    background: var(--light-gray);
-    border-top: 0.125rem solid #e4e4e4;
+    background: linear-gradient(to bottom, #F9EEF0, #ffffff);
+    border-top: none;
     height: 90vh;
     display: flex;
 }
@@ -19,7 +19,7 @@
 #hero .content {
     z-index: 1;
     display: flex;
-	flex-direction: column;
+    flex-direction: column;
     margin-top: auto;
     text-align: center;
     gap: 1.75rem;
@@ -33,9 +33,9 @@
 
 @media (width >= 1280px) {
     #hero {
-        background: var(--bg-color);
+        background: linear-gradient(to bottom, #F9EEF0, #ffffff);
         border-top: none;
-    } 
+    }
 
     #hero > span {
         position: absolute;
@@ -65,4 +65,4 @@
         color: var(--primary-color);
         font-weight: var(--fw-bold);
     }
-} 
+}

@@ -81,7 +81,8 @@
 
 #testimonials {
     height: 100vh;
-    background: var(--secondary-color);
+    /* ✅ degradê: branco → rosa → branco, igual ao tom do header */
+    background: linear-gradient(to bottom, #ffffff, #F9EEF0 40%, #F9EEF0 60%, #ffffff);
     display: flex;
     flex-direction: column;
     padding-block: 4rem;
