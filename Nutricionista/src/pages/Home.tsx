@@ -296,7 +296,7 @@ export default function Home() {
                     />
                     <ReCAPTCHA
                         ref={recaptchaRef}
-                        sitekey="VITE_RECAPTCHA_SITE_KEY"
+                        sitekey={import.meta.env.VITE_RECAPTCHA_SITE_KEY}
                         onChange={handleCaptcha}
                     />
                     {status === "success" && <p style={{ color: "green" }}>Mensagem enviada com sucesso! 💕</p>}
