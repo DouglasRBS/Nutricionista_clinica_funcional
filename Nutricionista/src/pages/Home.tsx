@@ -30,11 +30,11 @@ export default function Home() {
         }
     }, [showMobileMenu]);
 
-    async function sendContactEmail() {
-        const response = await fetch("/api/send-email", {
+    async function sendContactEmail(captchaToken: string) {
+        const response = await fetch("/.netlify/functions/send-email", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ email, message }),
+            body: JSON.stringify({ email, message, captchaToken }),
         });
 
         if (!response.ok) {
@@ -49,10 +49,11 @@ export default function Home() {
 
     async function handleSubmit(e: React.FormEvent) {
         e.preventDefault();
-        if (!isCaptchaValid) return;
+        const captchaToken = recaptchaRef.current?.getValue();
+        if (!isCaptchaValid || !captchaToken) return;
         setStatus("loading");
         try {
-            await sendContactEmail();
+            await sendContactEmail(captchaToken);
             setStatus("success");
             setEmail("");
             setMessage("");
@@ -296,7 +297,7 @@ export default function Home() {
                     />
                     <ReCAPTCHA
                         ref={recaptchaRef}
-                        sitekey={import.meta.env.VITE_RECAPTCHA_SITE_KEY}
+                        sitekey="VITE_RECAPTCHA_SITE_KEY"
                         onChange={handleCaptcha}
                     />
                     {status === "success" && <p style={{ color: "green" }}>Mensagem enviada com sucesso! 💕</p>}
