@@ -4,7 +4,7 @@ import "../styles/utility.css";
 import Menu from "../assets/Menu.svg";
 import Close from "../assets/Close.svg";
 import Button from '../components/button.tsx';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import "../styles/hero.css";
 import "../styles/solution.css";
 import IconEmagrecimento from "../assets/emagrecimento.svg";
@@ -13,9 +13,15 @@ import IconNutricao from "../assets/nutricao.svg";
 import TestimonialCard from '../components/TestimonialCard.tsx';
 import { IconBrandInstagram, IconBrandFacebook, IconBrandWhatsapp } from '@tabler/icons-react';
 import CheckIcon from '../assets/check.svg';
+import ReCAPTCHA from "react-google-recaptcha";
 
 export default function Home() {
     const [showMobileMenu, setShowMobileMenu] = useState(false);
+    const [email, setEmail] = useState("");
+    const [message, setMessage] = useState("");
+    const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
+    const [isCaptchaValid, setIsCaptchaValid] = useState(false);
+    const recaptchaRef = useRef<ReCAPTCHA>(null);
 
     useEffect(() => {
         const html = document.querySelector("html");
@@ -23,6 +29,39 @@ export default function Home() {
             html.style.overflow = showMobileMenu ? "hidden" : "auto";
         }
     }, [showMobileMenu]);
+
+    async function sendContactEmail() {
+        const response = await fetch("/api/send-email", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ email, message }),
+        });
+
+        if (!response.ok) {
+            const body = await response.json().catch(() => ({}));
+            throw new Error(body.error ?? "Erro ao enviar mensagem.");
+        }
+    }
+
+    function handleCaptcha(token: string | null) {
+        setIsCaptchaValid(!!token);
+    }
+
+    async function handleSubmit(e: React.FormEvent) {
+        e.preventDefault();
+        if (!isCaptchaValid) return;
+        setStatus("loading");
+        try {
+            await sendContactEmail();
+            setStatus("success");
+            setEmail("");
+            setMessage("");
+            setIsCaptchaValid(false);
+            recaptchaRef.current?.reset();
+        } catch {
+            setStatus("error");
+        }
+    }
 
     return (
         <>
@@ -160,7 +199,6 @@ export default function Home() {
                     <div className="carousel-content">
                         <TestimonialCard text="Lari, sua querida, eu quem agradece. Ainda continuo tentando fazer a dieta e não consigo comer mais como antes. Obrigada pela atenção, profissionalismo e carinho comigo — tenho certeza que com todas as pacientes você é maravilhosa!" stars={5} />
                         <TestimonialCard text="Acredito que estou indo bem, pois diminuí bastante as quantidades no almoço e na janta. Como sempre mais leve, presto atenção na mastigação e parei com as guloseimas. Muito obrigada pelo cuidado, dedicação e orientação. Sua ajuda foi fundamental para alcançar meus objetivos e melhorar minha qualidade de vida!" stars={5} />
-                        {/* duplicados para o loop infinito funcionar sem corte */}
                         <TestimonialCard text="Lari, sua querida, eu quem agradece. Ainda continuo tentando fazer a dieta e não consigo comer mais como antes. Obrigada pela atenção, profissionalismo e carinho comigo — tenho certeza que com todas as pacientes você é maravilhosa!" stars={5} />
                         <TestimonialCard text="Acredito que estou indo bem, pois diminuí bastante as quantidades no almoço e na janta. Como sempre mais leve, presto atenção na mastigação e parei com as guloseimas. Muito obrigada pelo cuidado, dedicação e orientação. Sua ajuda foi fundamental para alcançar meus objetivos e melhorar minha qualidade de vida!" stars={5} />
                     </div>
@@ -242,10 +280,28 @@ export default function Home() {
                     Tire suas dúvidas sobre consultas, atendimento online ou presencial.
                     A Dra. Larissa está pronta para te acolher e iniciar sua transformação!
                 </p>
-                <form className="contact-form">
-                    <input type="email" placeholder="Seu melhor e-mail" />
-                    <textarea placeholder="Escreva sua mensagem. Responderei o mais breve possível! 💕" />
-                    <Button text="Enviar mensagem" />
+                <form className="contact-form" onSubmit={handleSubmit}>
+                    <input
+                        type="email"
+                        placeholder="Seu melhor e-mail"
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
+                        required
+                    />
+                    <textarea
+                        placeholder="Escreva sua mensagem. Responderei o mais breve possível! 💕"
+                        value={message}
+                        onChange={(e) => setMessage(e.target.value)}
+                        required
+                    />
+                    <ReCAPTCHA
+                        ref={recaptchaRef}
+                        sitekey="VITE_RECAPTCHA_SITE_KEY"
+                        onChange={handleCaptcha}
+                    />
+                    {status === "success" && <p style={{ color: "green" }}>Mensagem enviada com sucesso! 💕</p>}
+                    {status === "error" && <p style={{ color: "red" }}>Erro ao enviar. Tente novamente.</p>}
+                    <Button text={status === "loading" ? "Enviando..." : "Enviar mensagem"} />
                 </form>
             </section>
 
