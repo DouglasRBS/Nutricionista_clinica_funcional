@@ -1,8 +1,6 @@
 import Logo from '../assets/Logo.png';
 import "../styles/header.css";
 import "../styles/utility.css";
-import Menu from "../assets/Menu.svg";
-import Close from "../assets/Close.svg";
 import Button from '../components/button.tsx';
 import { useState, useEffect, useRef } from 'react';
 import "../styles/hero.css";
@@ -11,8 +9,7 @@ import IconEmagrecimento from "../assets/emagrecimento.svg";
 import IconLipedema from "../assets/lipedema.svg";
 import IconNutricao from "../assets/nutricao.svg";
 import TestimonialCard from '../components/TestimonialCard.tsx';
-import { IconBrandInstagram, IconBrandFacebook, IconBrandWhatsapp } from '@tabler/icons-react';
-import CheckIcon from '../assets/check.svg';
+import { IconBrandInstagram, IconBrandFacebook, IconBrandWhatsapp, IconCheck, IconMenu2, IconX } from '@tabler/icons-react';
 import ReCAPTCHA from "react-google-recaptcha";
 
 export default function Home() {
@@ -106,14 +103,15 @@ export default function Home() {
                                                 WhatsApp
                                             </a>
                                         </li>
-                                        <span onClick={() => setShowMobileMenu(!showMobileMenu)} className="btn-wrapper">
-                                            <img src={Close} alt="ícone fechar menu" width={24} height={24} />
+                                        {/* ALTERADO: Trocado a img Close pelo IconX rosa com tamanho delicado (30px) */}
+                                        <span onClick={() => setShowMobileMenu(!showMobileMenu)} className="btn-wrapper" style={{ cursor: 'pointer' }}>
+                                            <IconX color="var(--primary-color)" size={30} />
                                         </span>
                                     </div>
                                 </div>
                             ) : (
-                                <span onClick={() => setShowMobileMenu(!showMobileMenu)} className="btn-wrapper">
-                                    <img src={Menu} alt="ícone menu" width={24} height={24} />
+                                <span onClick={() => setShowMobileMenu(!showMobileMenu)} className="btn-wrapper" style={{ cursor: 'pointer' }}>
+                                    <IconMenu2 color="var(--primary-color)" size={32} />
                                 </span>
                             )}
                         </div>
@@ -128,7 +126,7 @@ export default function Home() {
                     <p>
                         Especialista em emagrecimento e tratamento do lipedema,
                         a Dra. Larissa Litvin cuida de você com uma abordagem
-                        clínica e funcional, respeitando o seu corpo e a sua história.
+                        clínica e funcional, respeitando o seu body e a sua história.
                     </p>
                     <div className="flex gap-1">
                         <span>
@@ -198,10 +196,21 @@ export default function Home() {
 
                 <section className="carousel">
                     <div className="carousel-content">
-                        <TestimonialCard text="Lari, sua querida, eu quem agradece. Ainda continuo tentando fazer a dieta e não consigo comer mais como antes. Obrigada pela atenção, profissionalismo e carinho comigo — tenho certeza que com todas as pacientes você é maravilhosa!" stars={5} />
-                        <TestimonialCard text="Acredito que estou indo bem, pois diminuí bastante as quantidades no almoço e na janta. Como sempre mais leve, presto atenção na mastigação e parei com as guloseimas. Muito obrigada pelo cuidado, dedicação e orientação. Sua ajuda foi fundamental para alcançar meus objetivos e melhorar minha qualidade de vida!" stars={5} />
-                        <TestimonialCard text="Lari, sua querida, eu quem agradece. Ainda continuo tentando fazer a dieta e não consigo comer mais como antes. Obrigada pela atenção, profissionalismo e carinho comigo — tenho certeza que com todas as pacientes você é maravilhosa!" stars={5} />
-                        <TestimonialCard text="Acredito que estou indo bem, pois diminuí bastante as quantidades no almoço e na janta. Como sempre mais leve, presto atenção na mastigação e parei com as guloseimas. Muito obrigada pelo cuidado, dedicação e orientação. Sua ajuda foi fundamental para alcançar meus objetivos e melhorar minha qualidade de vida!" stars={5} />
+                        <TestimonialCard
+                            name="Amanda"
+                            text="Lari, sua querida, eu quem agradece. Ainda continuo tentando fazer a dieta e não consigo comer mais como antes. Obrigada pela atenção, profissionalismo e carinho comigo — tenho certeza que com todas as pacientes você é maravilhosa!"
+                            stars={5}
+                        />
+                        <TestimonialCard
+                            name="Ana Júlia"
+                            text="Acredito que estou indo bem, pois diminuí bastante as quantidades no almoço e na janta. Como sempre mais leve, presto atenção na mastigação e parei com as guloseimas. Muito obrigada pelo cuidado, dedicação e orientação. Sua ajuda foi fundamental para alcançar meus objetivos e melhorar minha qualidade de vida!"
+                            stars={5}
+                        />
+                        <TestimonialCard
+                            name="Valentina"
+                            text="Lari, sua querida, eu quem agradece. Ainda continuo tentando fazer a dieta e não consigo comer mais como antes. Obrigada pela atenção, profissionalismo e carinho comigo — tenho certeza que com todas as pacientes você é maravilhosa!"
+                            stars={5}
+                        />
                     </div>
                 </section>
             </section>
@@ -224,9 +233,9 @@ export default function Home() {
                         </div>
                         <div className="hr" />
                         <ul>
-                            <li className="features"><img src={CheckIcon} width={20} height={20} /><p>1 consulta nutricional</p></li>
-                            <li className="features"><img src={CheckIcon} width={20} height={20} /><p>1 retorno incluído</p></li>
-                            <li className="features"><img src={CheckIcon} width={20} height={20} /><p>Plano alimentar personalizado</p></li>
+                            <li className="features"><IconCheck color="var(--primary-color)" size={20} /><p>1 consulta nutricional</p></li>
+                            <li className="features"><IconCheck color="var(--primary-color)" size={20} /><p>1 retorno incluído</p></li>
+                            <li className="features"><IconCheck color="var(--primary-color)" size={20} /><p>Plano alimentar personalizado</p></li>
                         </ul>
                         <Button text="Agendar consulta" />
                     </div>
@@ -243,10 +252,10 @@ export default function Home() {
                         </div>
                         <div className="hr" />
                         <ul>
-                            <li className="features"><img src={CheckIcon} width={20} height={20} /><p>3 consultas nutricionais</p></li>
-                            <li className="features"><img src={CheckIcon} width={20} height={20} /><p>Acompanhamento contínuo</p></li>
-                            <li className="features"><img src={CheckIcon} width={20} height={20} /><p>Plano alimentar personalizado</p></li>
-                            <li className="features"><img src={CheckIcon} width={20} height={20} /><p>Suporte entre as consultas</p></li>
+                            <li className="features"><IconCheck color="var(--primary-color)" size={20} /><p>3 consultas nutricionais</p></li>
+                            <li className="features"><IconCheck color="var(--primary-color)" size={20} /><p>Acompanhamento contínuo</p></li>
+                            <li className="features"><IconCheck color="var(--primary-color)" size={20} /><p>Plano alimentar personalizado</p></li>
+                            <li className="features"><IconCheck color="var(--primary-color)" size={20} /><p>Suporte entre as consultas</p></li>
                         </ul>
                         <Button text="Agendar consulta" />
                     </div>
@@ -263,9 +272,9 @@ export default function Home() {
                         </div>
                         <div className="hr" />
                         <ul>
-                            <li className="features"><img src={CheckIcon} width={20} height={20} /><p>Avaliação de composição corporal</p></li>
-                            <li className="features"><img src={CheckIcon} width={20} height={20} /><p>Análise de massa muscular e gordura</p></li>
-                            <li className="features"><img src={CheckIcon} width={20} height={20} /><p>Resultado na hora</p></li>
+                            <li className="features"><IconCheck color="var(--primary-color)" size={20} /><p>Avaliação de composição corporal</p></li>
+                            <li className="features"><IconCheck color="var(--primary-color)" size={20} /><p>Análise de massa muscular e gordura</p></li>
+                            <li className="features"><IconCheck color="var(--primary-color)" size={20} /><p>Resultado na hora</p></li>
                         </ul>
                         <Button text="Agendar consulta" />
                     </div>
@@ -310,8 +319,8 @@ export default function Home() {
                 <div className="footer-brand" style={{ alignItems: 'center' }}>
                     <img src={Logo} alt="Larissa Litvin Nutricionista" width={220} style={{ height: 'auto' }} />
                     <div className="footer-socials">
-                        <a href="#" target="_blank" rel="noopener noreferrer"><IconBrandInstagram size={24} /></a>
-                        <a href="#" target="_blank" rel="noopener noreferrer"><IconBrandFacebook size={24} /></a>
+                        <a href="https://www.instagram.com/nutrilarilitvin?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" target="_blank" rel="noopener noreferrer"><IconBrandInstagram size={24} /></a>
+                        <a href="https://www.facebook.com/NutricionistaLarissaLitvin" target="_blank" rel="noopener noreferrer"><IconBrandFacebook size={24} /></a>
                         <a href="https://wa.me/5545999368498" target="_blank" rel="noopener noreferrer"><IconBrandWhatsapp size={24} /></a>
                     </div>
                 </div>
@@ -344,7 +353,7 @@ export default function Home() {
                 </div>
 
                 <div className="footer-bottom">
-                    <p>Feito com amor na aula de Programação Web 🤍 ©2025 Larissa Litvin Nutricionista — Todos os direitos reservados.</p>
+                    <p>© 2026 Dra. Larissa Litvin Nutricionista — Todos os direitos reservados.</p>
                 </div>
             </footer>
         </>
